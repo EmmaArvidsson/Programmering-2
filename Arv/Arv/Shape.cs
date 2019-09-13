@@ -17,8 +17,5 @@ namespace Arv
             this.width = width;
         }
 
-        class Rectangle : Shape
-        {
-        }
     }
 }
