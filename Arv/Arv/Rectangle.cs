@@ -15,12 +15,12 @@ namespace Arv
         }
 
 
-        public double Area()
+        public override int Area()
         {
             return width * height;
         }
         
-        public double Circumference()
+        public override int Circumference()
         {
             return 2 * (width + height);
         }
