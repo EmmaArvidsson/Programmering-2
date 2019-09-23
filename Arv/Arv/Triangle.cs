@@ -9,7 +9,6 @@ namespace Arv
 
         public Triangle(int height, int width):base(height, width)
         {
-
         }
 
         public override int Area()
@@ -19,7 +18,7 @@ namespace Arv
 
         public override int Circumference()
         {
-            int hypotenusa = Math.Sqrt(width * width + height * height);
+            int hypotenusa = (int)Math.Sqrt(width * width + height * height);
             return hypotenusa + width + height;
         }
 

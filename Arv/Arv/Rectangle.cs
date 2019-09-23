@@ -9,11 +9,7 @@ namespace Arv
 
         public Rectangle(int height, int width):base(height, width)
         {
-
-
-
         }
-
 
         public override int Area()
         {
