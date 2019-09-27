@@ -4,19 +4,24 @@ using System.Text;
 
 namespace Arv
 {
-    class Rectangle : Shape
+    class Rectangle : IShape
     {
+        int width;
+        int height;
 
-        public Rectangle(int height, int width):base(height, width)
+        public Rectangle(int height, int width)
         {
+            this.height = height;
+            this.width = width;
+
         }
 
-        public override int Area()
+        public int Area()
         {
             return width * height;
         }
         
-        public override int Circumference()
+        public int Circumference()
         {
             return 2 * (width + height);
         }
