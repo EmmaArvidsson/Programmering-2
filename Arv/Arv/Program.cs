@@ -22,7 +22,7 @@ namespace Arv
                 shape = new Triangle(height, width);
             }
 
-            else if(s == "rectangel") 
+            else if (s == "rektangel") 
             {
                 Console.WriteLine("Skriv in höjden: ");
                 int height = int.Parse(Console.ReadLine());
