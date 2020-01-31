@@ -10,6 +10,8 @@ namespace Template
     /// </summary>
     public class Game1 : Game
     {
+        List<BaseClass> objectLista = new List<BaseClass>();
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -40,9 +42,11 @@ namespace Template
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Texture2D texture = Content.Load<Texture2D>("Player");
-            player = new Player(texture);
+          
+            objectLista.Add(new Player(texture));
             Texture2D texture1 = Content.Load<Texture2D>("Enemy");
-            enemy = new Enemy(texture1);
+            objectLista.Add(new Enemy(texture1));
+            
 
             
             
@@ -67,14 +71,15 @@ namespace Template
         }
 
         
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="gameTime"
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.LightPink);
 
-            player.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
-            
+            spriteBatch.Begin();
+            foreach (BaseClass objekt in objectLista)
+                objekt.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

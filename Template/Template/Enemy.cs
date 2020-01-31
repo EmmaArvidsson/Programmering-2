@@ -8,28 +8,22 @@ using System.Threading.Tasks;
 
 namespace Template
 {
-    class Enemy
+    class Enemy : BaseClass
     {
-        private Texture2D texture1;
-        private Vector2 position;
+        
+        
 
-        public Enemy(Texture2D texture1)
+        public Enemy(Texture2D texture1) : base(texture1)
         {
-            this.texture1 = texture1;
+            
             position = new Vector2(150, 230);
         }
 
-        public void Update()
+        public override void Update()
         {
 
         }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture1, position, Color.White);
-            spriteBatch.End();
-
-        }
+       
 
     }
 }

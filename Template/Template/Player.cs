@@ -8,28 +8,21 @@ using Microsoft.Xna.Framework;
 
 namespace Template
 {
-    class Player
+    class Player : BaseClass
     {
-        private Texture2D texture;
-        private Vector2 position;
+        
 
-        public Player(Texture2D texture)
+        public Player(Texture2D texture) : base(texture)
         {
-            this.texture = texture;
+            
             position = new Vector2(0,230);
         }
 
-        public void Update()
+        public override void Update()
         {
 
         }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture, position, Color.White);
-            spriteBatch.End();
 
-        }
 
     }
 }
