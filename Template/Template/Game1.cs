@@ -15,11 +15,6 @@ namespace Template
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D Pixel;
-        Player player;
-        Enemy enemy;
-
-        
 
         public Game1()
         {
@@ -45,11 +40,12 @@ namespace Template
           
             objectLista.Add(new Player(texture));
             Texture2D texture1 = Content.Load<Texture2D>("Enemy");
-            objectLista.Add(new Enemy(texture1));
-            
+            objectLista.Add(new Enemy(texture1, new Vector2(50,230)));
+            objectLista.Add(new Enemy(texture1, new Vector2(100,230)));
 
-            
-            
+
+
+
         }
 
      
@@ -65,7 +61,9 @@ namespace Template
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
+            foreach (BaseClass objekt in objectLista)
+                objekt.Update();
+
 
             base.Update(gameTime);
         }
@@ -74,7 +72,7 @@ namespace Template
         /// <param name="gameTime"
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.LightPink);
+            GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
             foreach (BaseClass objekt in objectLista)
