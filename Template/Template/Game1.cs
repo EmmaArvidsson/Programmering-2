@@ -10,10 +10,13 @@ namespace Template
     /// </summary>
     public class Game1 : Game
     {
-        List<BaseClass> objectLista = new List<BaseClass>();
 
+        private static List<IUpdate> update = new List<IUpdate>();
+        private static List<IDraw> draw = new List<IDraw>();
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        
 
 
         public Game1()
@@ -22,11 +25,19 @@ namespace Template
             Content.RootDirectory = "Content";
         }
 
+        public static void AddIUpdate(IUpdate iu)
+        {
+            update.Add(iu);
+        }
+
+        public static void AddIDraw(IDraw id)
+        {
+            draw.Add(id);
+        }
+
        
         protected override void Initialize()
         {
-            
-
             base.Initialize();
         }
 
@@ -37,15 +48,13 @@ namespace Template
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Texture2D texture = Content.Load<Texture2D>("Player");
-          
-            objectLista.Add(new Player(texture));
             Texture2D texture1 = Content.Load<Texture2D>("Enemy");
-            objectLista.Add(new Enemy(texture1, new Vector2(50,230)));
-            objectLista.Add(new Enemy(texture1, new Vector2(100,230)));
 
-
-
-
+            Player p = new Player(texture);
+            AddIDraw(p as IDraw);
+            Enemy e = new Enemy(texture);
+            AddIDraw(e as IDraw);
+           
         }
 
      
@@ -61,10 +70,6 @@ namespace Template
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            foreach (BaseClass objekt in objectLista)
-                objekt.Update();
-
-
             base.Update(gameTime);
         }
 
@@ -75,9 +80,12 @@ namespace Template
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
-            foreach (BaseClass objekt in objectLista)
-                objekt.Draw(spriteBatch);
+
+            foreach (IDraw id in draw)
+                id.Draw(spriteBatch);
+            
             spriteBatch.End();
+            
 
             base.Draw(gameTime);
         }

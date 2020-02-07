@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace Template
 {
-    class Player : BaseClass
+    class Player : BaseClass,IUpdate, IDraw
     {
         Vector2 velocity = Vector2.Zero;
         Vector2 gravity = new Vector2(0, 20);
@@ -21,7 +21,7 @@ namespace Template
             position = new Vector2(0,230);
         }
 
-        public override void Update()
+        public void Update()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.D))
                 position.X += 3;
@@ -40,6 +40,10 @@ namespace Template
             grounded = position.Y + texture.Height >= 480;
         }
 
-
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, position, Color.White);
+        }
     }
+
 }

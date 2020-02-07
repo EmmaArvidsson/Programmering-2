@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Template
 {
-    class Enemy : BaseClass
+    class Enemy : BaseClass,IUpdate, IDraw
     {
         int radie = 100;
         float vinkel = 0;
@@ -26,7 +26,7 @@ namespace Template
                 rotation *= -1;
         }
 
-        public override void Update()
+        public void Update()
         {
             Vector2 dir = new Vector2();
             dir.X = (float)Math.Sin(vinkel);
@@ -34,8 +34,11 @@ namespace Template
             position = mittenposition + dir * radie;
             vinkel+= rotation;
         }
-       
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, position, Color.White);
+        }
     }
 }
 
