@@ -18,7 +18,6 @@ namespace Template
         SpriteBatch spriteBatch;
         
 
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -52,8 +51,11 @@ namespace Template
 
             Player p = new Player(texture);
             AddIDraw(p as IDraw);
-            Enemy e = new Enemy(texture);
+            Enemy e = new Enemy(texture1, new Vector2(50,200));
             AddIDraw(e as IDraw);
+            AddIUpdate(e as IUpdate);
+            AddIUpdate(p as IUpdate);
+            Keys forward = (Keys)87;
            
         }
 
@@ -70,6 +72,9 @@ namespace Template
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            foreach (IUpdate iu in update)
+                iu.Update();
+
             base.Update(gameTime);
         }
 
@@ -83,6 +88,7 @@ namespace Template
 
             foreach (IDraw id in draw)
                 id.Draw(spriteBatch);
+            
             
             spriteBatch.End();
             
