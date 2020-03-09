@@ -16,6 +16,8 @@ namespace Template
         
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        float time;
         
 
         public Game1()
@@ -43,9 +45,10 @@ namespace Template
         
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+           
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //laddar in bilder till fiende och spelare
             Texture2D texture = Content.Load<Texture2D>("Player");
             Texture2D texture1 = Content.Load<Texture2D>("Enemy");
 
@@ -74,6 +77,8 @@ namespace Template
 
             foreach (IUpdate iu in update)
                 iu.Update();
+
+            time += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             base.Update(gameTime);
         }
