@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -17,8 +18,9 @@ namespace Template
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SoundEffect soundEffect;
+
         float time;
-        
 
         public Game1()
         {
@@ -48,9 +50,10 @@ namespace Template
            
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //laddar in bilder till fiende och spelare
+            //laddar in bilder till fiende och spelare och laddar in ljud
             Texture2D texture = Content.Load<Texture2D>("Player");
             Texture2D texture1 = Content.Load<Texture2D>("Enemy");
+            soundEffect = Content.Load<SoundEffect>("supermario");
 
             Player p = new Player(texture);
             AddIDraw(p as IDraw);

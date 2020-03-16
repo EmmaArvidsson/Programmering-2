@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework;
 
 namespace Template
@@ -13,19 +14,30 @@ namespace Template
     class Player : BaseClass,IUpdate, IDraw
         
     {
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+        List<SoundEffect> soundEffects;
+
+
         Vector2 velocity = Vector2.Zero;
         Vector2 gravity = new Vector2(0, 20);
         bool grounded = false;
 
         public Player(Texture2D texture) : base(texture)
         {
-            
             position = new Vector2(0,230);
+            ;
+
+            soundEffects[0].Play();
+
+            var instance = soundEffects[0].CreateInstance();
+            instance.IsLooped = true;
+            instance.Play();
         }
 
         public void Update()
         {
-            //Spelaren rör sig om man trycker på A,D eller Space
+            //Spelaren rör sig om man trycker på A,D eller Space, när man trycker på Space så kommer det ljud
             if (Keyboard.GetState().IsKeyDown(Keys.D))
                 position.X += 3;
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -33,6 +45,8 @@ namespace Template
             if (Keyboard.GetState().IsKeyDown(Keys.Space)  && grounded)
                 
             {
+                soundEffects[0].CreateInstance().Play();
+
                 velocity.Y = -10;
                 grounded = false;
             }
@@ -44,6 +58,7 @@ namespace Template
             grounded = position.Y + texture.Height >= 480;
         }
 
+        //Ritar ut spelarens textur, position och bild
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, Color.White);
