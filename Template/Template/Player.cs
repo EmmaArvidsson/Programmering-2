@@ -18,6 +18,13 @@ namespace Template
         SpriteBatch spriteBatch;
         List<SoundEffect> soundEffects;
 
+        //vet inte var hitboxen ska vara i player klassen
+        //Vet heller inte hur stor hitboxen ska vara på spelaren
+        Rectangle rec1 = new Rectangle(0, 230, 20, 20);
+
+        if (rec1.Intersects(rec2))
+            Collide();
+
 
         Vector2 velocity = Vector2.Zero;
         Vector2 gravity = new Vector2(0, 20);

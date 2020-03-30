@@ -14,6 +14,10 @@ namespace Template
         
     {
         Vector2 velocity = Vector2.Zero;
+        //Vet heller inte var den ska vara i Enemy
+        //Kommer hitboxen att följa med fienden när den trillar ner?
+        Rectangle rec2 = new Rectangle(0, 10, 20, 20);
+
  
         public Enemy(Texture2D texture1, Vector2 position) : base(texture1)
         {

@@ -6,9 +6,20 @@ using System.Collections.Generic;
 
 namespace Template
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
+
+    //Enum kanske ska vara en klass?
+    private enum Paus
+
+        if(meny == Meny.PausMenu)
+            {
+            //Antar att om meny är pausmeny så ska spelet pausa. 
+            //Om det inte är det så ska spelet köra
+
+            }
+    
+
+
+    
     public class Game1 : Game
     {
 
