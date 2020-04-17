@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework;
 
 namespace Template
@@ -16,7 +15,7 @@ namespace Template
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        List<SoundEffect> soundEffects;
+        
 
         //vet inte var hitboxen ska vara i player klassen
         //Vet heller inte hur stor hitboxen ska vara på spelaren
@@ -33,18 +32,11 @@ namespace Template
         public Player(Texture2D texture) : base(texture)
         {
             position = new Vector2(0,230);
-            ;
-
-            soundEffects[0].Play();
-
-            var instance = soundEffects[0].CreateInstance();
-            instance.IsLooped = true;
-            instance.Play();
         }
 
         public void Update()
         {
-            //Spelaren rör sig om man trycker på A,D eller Space, när man trycker på Space så kommer det ljud
+            //Spelaren rör sig om man trycker på A,D eller Space
             if (Keyboard.GetState().IsKeyDown(Keys.D))
                 position.X += 3;
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -52,8 +44,6 @@ namespace Template
             if (Keyboard.GetState().IsKeyDown(Keys.Space)  && grounded)
                 
             {
-                soundEffects[0].CreateInstance().Play();
-
                 velocity.Y = -10;
                 grounded = false;
             }

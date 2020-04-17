@@ -1,37 +1,33 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Template
 {
-
-    //Enum kanske ska vara en klass?
-    private enum Paus
-
-        if(meny == Meny.PausMenu)
-            {
-            //Antar att om meny är pausmeny så ska spelet pausa. 
-            //Om det inte är det så ska spelet köra
-
-            }
-    
-
-
     
     public class Game1 : Game
     {
+
+        private enum GameState
+        {
+            GamePlaying,
+            Pause,
+            GameOver
+        }
+
+        GameState gameState = new GameState();
 
         private static List<IUpdate> update = new List<IUpdate>();
         private static List<IDraw> draw = new List<IDraw>();
         
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteBatch Font;
 
-        SoundEffect soundEffect;
-
-        float time;
+        float timer;
+        int timecounter;
 
         public Game1()
         {
@@ -61,10 +57,11 @@ namespace Template
            
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //laddar in bilder till fiende och spelare och laddar in ljud
+            //laddar in bilder till fiende och spelare
             Texture2D texture = Content.Load<Texture2D>("Player");
             Texture2D texture1 = Content.Load<Texture2D>("Enemy");
-            soundEffect = Content.Load<SoundEffect>("supermario");
+            
+            Font = Content.Load<SpriteFont>("Tidtagare");
 
             Player p = new Player(texture);
             AddIDraw(p as IDraw);
@@ -72,6 +69,8 @@ namespace Template
             AddIDraw(e as IDraw);
             AddIUpdate(e as IUpdate);
             AddIUpdate(p as IUpdate);
+
+            //ascii för space, d och a
             Keys forward = (Keys)87;
            
         }
@@ -81,6 +80,9 @@ namespace Template
         {
             
         }
+
+
+
 
       
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
@@ -92,7 +94,11 @@ namespace Template
             foreach (IUpdate iu in update)
                 iu.Update();
 
-            time += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //Tiden
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timecounter += (int)timer;
+            if (timer >= 1.0f) timer = 0f;
+
 
             base.Update(gameTime);
         }
@@ -104,6 +110,12 @@ namespace Template
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
+
+            //Ritar ut det som står mellan citattecknen
+            string output = "tiden";
+            
+            //Ritar ut string
+            SpriteBatch.DrawString(Font, ouput, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0, 5f);
 
             foreach (IDraw id in draw)
                 id.Draw(spriteBatch);
