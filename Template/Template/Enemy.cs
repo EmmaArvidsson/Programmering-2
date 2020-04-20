@@ -26,8 +26,8 @@ namespace Template
 
         public void Update()
         {
-            //Fienden trillar ner med 10 pixlar i sekunden. Om positionen är större än 400 så stannar fienden
-            velocity.Y += 10 * (1f/60);
+            //Fienden trillar ner med 5 pixlar i sekunden. Om positionen är större än 400 så stannar fienden
+            velocity.Y += 5 * (1f/60);
             position += velocity;
             if(position.Y > 400)
             {

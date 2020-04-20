@@ -9,8 +9,8 @@ namespace Template
     
     public class Game1 : Game
     {
-
-        private enum GameState
+        //Tre stycken olika "states" som spelet kan vara i
+         enum GameState
         {
             GamePlaying,
             Pause,
@@ -60,7 +60,7 @@ namespace Template
             //laddar in bilder till fiende och spelare
             Texture2D texture = Content.Load<Texture2D>("Player");
             Texture2D texture1 = Content.Load<Texture2D>("Enemy");
-            
+
             Font = Content.Load<SpriteFont>("Tidtagare");
 
             Player p = new Player(texture);
@@ -70,7 +70,7 @@ namespace Template
             AddIUpdate(e as IUpdate);
             AddIUpdate(p as IUpdate);
 
-            //ascii för space, d och a
+            //ascii för space, D och A
             Keys forward = (Keys)87;
            
         }
@@ -82,9 +82,6 @@ namespace Template
         }
 
 
-
-
-      
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
@@ -111,10 +108,9 @@ namespace Template
 
             spriteBatch.Begin();
 
-            //Ritar ut det som står mellan citattecknen
-            string output = "tiden";
-            
-            //Ritar ut string
+            //Ritar ut det som står mellan citattecknen             
+            string output = "tiden";                          
+            //Ritar ut string             
             SpriteBatch.DrawString(Font, ouput, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0, 5f);
 
             foreach (IDraw id in draw)

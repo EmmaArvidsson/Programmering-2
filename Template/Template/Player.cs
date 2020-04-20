@@ -21,8 +21,17 @@ namespace Template
         //Vet heller inte hur stor hitboxen ska vara på spelaren
         Rectangle rec1 = new Rectangle(0, 230, 20, 20);
 
-        if (rec1.Intersects(rec2))
-            Collide();
+        
+        //Klass som säger vad som händer om fiende kolliderar med spelaren
+        private void Colission()
+        {
+            if (rec2.Intersects(Player.rec1))
+            {
+                Collide();
+
+            }
+
+        }
 
 
         Vector2 velocity = Vector2.Zero;
