@@ -24,7 +24,9 @@ namespace Template
         
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        SpriteBatch Font;
+        SpriteFont Font;
+
+        
 
         float timer;
         int timecounter;
@@ -93,9 +95,7 @@ namespace Template
 
             //Tiden
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timecounter += (int)timer;
-            if (timer >= 1.0f) timer = 0f;
-
+   
 
             base.Update(gameTime);
         }
@@ -111,8 +111,8 @@ namespace Template
             //Ritar ut det som står mellan citattecknen             
             string output = "tiden";                          
             //Ritar ut string             
-            SpriteBatch.DrawString(Font, ouput, Color.Red, 0, FontOrigin, 1.0f, SpriteEffects.None, 0, 5f);
-
+            spriteBatch.DrawString(Font, output + (int)timer, new Vector2(10,10) , Color.Red);
+            
             foreach (IDraw id in draw)
                 id.Draw(spriteBatch);
             

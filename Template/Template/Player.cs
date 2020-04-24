@@ -23,7 +23,7 @@ namespace Template
 
         
         //Klass som säger vad som händer om fiende kolliderar med spelaren
-        private void Colission()
+       /* private void Colission()
         {
             if (rec2.Intersects(Player.rec1))
             {
@@ -31,7 +31,7 @@ namespace Template
 
             }
 
-        }
+        }*/
 
 
         Vector2 velocity = Vector2.Zero;
