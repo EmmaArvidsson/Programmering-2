@@ -37,10 +37,12 @@
 /processorParam:TextureFormat=Color
 /build:Player.png
 
+
 #begin Tidtagare.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Tidtagare.spritefont
+
 

@@ -21,12 +21,18 @@ namespace Template
 
         private static List<IUpdate> update = new List<IUpdate>();
         private static List<IDraw> draw = new List<IDraw>();
-        
+
+
+        //Spelarens hitbox
+        Rectangle rec1 = new Rectangle(0, 230, 20, 20);
+
+        //Fiendens hitbox
+        Rectangle rec2 = new Rectangle(0, 10, 20, 20);
+
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont Font;
-
-        
 
         float timer;
         int timecounter;
@@ -53,7 +59,18 @@ namespace Template
             base.Initialize();
         }
 
-        
+        //Metod som säger vad som händer om fiende kolliderar med spelaren
+        private void Colission()
+        {
+            if (rec2.Intersects(Player.rec1))
+            {
+                Collide();
+
+            }
+
+        }
+
+
         protected override void LoadContent()
         {
            
@@ -67,10 +84,12 @@ namespace Template
 
             Player p = new Player(texture);
             AddIDraw(p as IDraw);
+            AddIUpdate(p as IUpdate);
+
             Enemy e = new Enemy(texture1, new Vector2(50,200));
             AddIDraw(e as IDraw);
             AddIUpdate(e as IUpdate);
-            AddIUpdate(p as IUpdate);
+            
 
             //ascii för space, D och A
             Keys forward = (Keys)87;
@@ -95,7 +114,6 @@ namespace Template
 
             //Tiden
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-   
 
             base.Update(gameTime);
         }
