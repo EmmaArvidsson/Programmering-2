@@ -82,17 +82,15 @@ namespace Template
 
             Font = Content.Load<SpriteFont>("Tidtagare");
 
+            //Ger spelaren sin textur och lägger till spelare i IDraw och IUpdate
             Player p = new Player(texture);
             AddIDraw(p as IDraw);
             AddIUpdate(p as IUpdate);
 
+            //Ger fienden sin textur och lägger till fiende i IDraw och IUpdate
             Enemy e = new Enemy(texture1, new Vector2(50,200));
             AddIDraw(e as IDraw);
             AddIUpdate(e as IUpdate);
-            
-
-            //ascii för space, D och A
-            Keys forward = (Keys)87;
            
         }
 
@@ -102,7 +100,7 @@ namespace Template
             
         }
 
-
+        
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
@@ -119,7 +117,7 @@ namespace Template
         }
 
         
-        /// <param name="gameTime"
+        
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);

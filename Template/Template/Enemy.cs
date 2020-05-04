@@ -15,6 +15,7 @@ namespace Template
     {
         Vector2 velocity = Vector2.Zero;
         
+        //Metod som säger fiendens position
         public Enemy(Texture2D texture1, Vector2 position) : base(texture1)
         {
             position = new Vector2(0, 10);
@@ -32,6 +33,7 @@ namespace Template
             }
         }
 
+        //Ritar ut fiendens textur, position och bild
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, Color.White);

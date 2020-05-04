@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace Template
 {
@@ -13,6 +15,11 @@ namespace Template
     class Player : BaseClass,IUpdate, IDraw
         
     {
+        //ascii för space, D och A
+        Keys forward = (Keys)68;
+        Keys backwards = (Keys)65;
+        Keys jump = (Keys)32;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -20,6 +27,30 @@ namespace Template
         Vector2 gravity = new Vector2(0, 20);
         bool grounded = false;
 
+        private void Controls()
+        {
+            //Filhantering, skapar en fil med mina kontroller för spelaren
+            try
+            {
+                StreamReader sr = new StreamReader("Kontroller.txt", true);
+                string s = sr.ReadLine();
+
+                forward = (Keys)s[0];
+                s = sr.ReadLine();
+                backwards = (Keys)s[0];
+                s = sr.ReadLine();
+                jump = (Keys)s[0];
+                sr.Close();
+            }
+            //Kollar att filen inte finns och skriver ut det som står mellan parentesen
+            catch
+            {
+                Console.WriteLine("Filen finns inte");
+            }
+
+        }
+
+        //Metod som säger spelarens position
         public Player(Texture2D texture) : base(texture)
         {
             position = new Vector2(0,230);
